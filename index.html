@@ -1,0 +1,167 @@
+<html>
+<head>
+    <title>Projeto API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <div>
+        <h1>
+            Pesquisa
+        </h1>
+    </div>
+    <div class="posicao">
+        <div class="busca">
+            <input id="busca"  type="text" class="entrada" name="search" placeholder="Qual filme você procura?">
+            <button id="bt" onclick="envia(document.getElementById('busca').value); refresh()" class="botao">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="i" class="info">
+
+            <h1 class= titulo>Sugestões</h1>
+            <br>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+        var lista = ['joker','across','speed racer','bacurau']
+
+        for (n=0;n<4;n++) {var xmlhttp = new XMLHttpRequest();
+
+            var x = lista[n]
+
+
+            xmlhttp.onload = function() {
+
+
+
+                var filme = JSON.parse(this.response);
+
+                var sugestao = '<img class= poster src="'+filme.Poster+'" alt= Poster>'
+
+
+
+
+
+
+                $('.info').append(sugestao)
+
+                }
+
+
+
+
+
+            urlGET="http://www.omdbapi.com/?t="+x+"&plot=full&apikey=f819ffba";
+            xmlhttp.open("GET", urlGET, true);
+
+            xmlhttp.send();
+
+                    }
+
+
+        var input = document.getElementById("busca");
+        input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("bt").click();
+        }
+        });
+
+
+
+
+
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            }
+            )
+
+
+
+
+        function refresh(){
+            document.getElementById("i").innerHTML= ""
+        }
+
+
+        function envia(x) {
+
+            var xmlhttp = new XMLHttpRequest();
+
+
+            xmlhttp.onload = function() {
+
+
+
+                var filme = JSON.parse(this.response);
+
+                if (filme.Response=="False"){
+
+                    if (x=="") {
+                        var erro2 ='<h1 class="titulo">Entre com um titulo de filme</h1>'
+                    $('.info').append(erro2)
+                    }
+                    else{
+                     var erro ='<h1 class="titulo"> Nenhum resultado encontrado para "'+x+'"</h1>'
+                    $('.info').append(erro)
+
+                    }
+
+                }
+
+                else{
+
+
+                var poster ='<img class="Poster" src="'+filme.Poster+'"alt="Poster">'
+                var titulo ='<h1 class="titulo">'+filme.Title+'</h1>'
+                var ano='<span class="ano"> Ano: '+filme.Year+'</span>'
+                var runtime='<p class="runtime"> Duração: '+filme.Runtime+'</p>'
+                var rating='<p class="rating">IMDB: '+filme.imdbRating+'</p>'
+                var sinopse='<p class="sinopse">'+filme.Plot+'</p>'
+                var botao= '<a href="index.html" class="home">Home</a>'
+
+
+
+
+
+                $('.info').append(poster,titulo,ano,runtime,rating,sinopse,botao)
+
+                }
+
+
+
+             }
+
+            urlGET="http://www.omdbapi.com/?t="+x+"&plot=full&apikey=f819ffba";
+            xmlhttp.open("GET", urlGET, true);
+
+            xmlhttp.send();
+
+        }
+
+
+    </script>
+</body>
+
+
+
+
+</html>
