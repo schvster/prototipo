@@ -58,6 +58,7 @@
             document.getElementById('busca').select();
             document.getElementById('busca').placeholder = "Erro 1/4"
             check+=1;
+            document.getElementById("runtime").classList.remove("invisivel");
           }
           else if (check==1){
             clear(document.getElementById('busca'));
@@ -65,6 +66,7 @@
             document.getElementById('busca').select();
             document.getElementById('busca').placeholder = "Erro 2/4"
             check+=1;
+            document.getElementById("rating").classList.remove("invisivel");
           }
           else if (check==2){
             clear(document.getElementById('busca'));
@@ -72,6 +74,7 @@
             document.getElementById('busca').select();
             document.getElementById('busca').placeholder = "Errou 3/4"
             check+=1;
+            document.getElementById("sinopse").classList.remove("invisivel");
 
           }
           else if (check==3){
@@ -149,7 +152,7 @@
         function funciona() {
 
           var x = randomIntFromInterval(1, 160)
-          var y = randomIntFromInterval(1,19)
+          var y = randomIntFromInterval(0,19)
 
             var xmlhttp = new XMLHttpRequest();
 
