@@ -86,20 +86,24 @@
             document.getElementById('busca').style.border = "2px solid #ff0000"
             document.getElementById('bt').style.border = "2px solid #ff0000"
             document.getElementById('bt').style.color = "#ff0000"
-            document.getElementById('busca').placeholder = "Não foi dessa vez"
-            check+=1;
+            document.getElementById('busca').placeholder = 'Não foi dessa vez. Pressione "Enter" para jogar de novo'
+            check=5;
             document.getElementById("poster").classList.remove("invisivel");
             document.getElementById("titulo").classList.remove("invisivel");
+          }
+          else if (check==5){
+            location.reload()
           }
         }
         else {
           clear(document.getElementById('busca'));
+          check=5;
           document.getElementById('busca').focus();
           document.getElementById('busca').select();
           document.getElementById('busca').style.border = "2px solid #00ff00"
           document.getElementById('bt').style.border = "2px solid #00ff00"
           document.getElementById('bt').style.color = "#00ff00"
-          document.getElementById('busca').placeholder = "Você conseguiu!"
+          document.getElementById('busca').placeholder = 'Você conseguiu! Pressione "Enter" para jogar de novo'
           document.getElementById("runtime").classList.remove("invisivel");
           document.getElementById("rating").classList.remove("invisivel");
           document.getElementById("sinopse").classList.remove("invisivel");
