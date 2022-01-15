@@ -20,11 +20,12 @@
 
     <div class="posicao">
     <div class="busca">
+        <button id="bt2" onclick="location.reload()" class="botao2 active"> Recomeçar </button>
         <input id="busca"  type="text" class="entrada" name="search" placeholder="Qual é o filme?">
         <button id="bt" onclick="enter()" class="botao active">
             Enter
         </button>
-        <button id="bt2" onclick="location.reload()" class="botao2 active"> Recomeçar </button>
+        
 
 
     </div>
@@ -56,21 +57,24 @@
       if (input.value.toUpperCase()!=document.getElementById("titulo").innerHTML.toUpperCase()){
           if (check==0){
             clear(document.getElementById('busca'));
-
+            document.getElementById('busca').focus();
+            document.getElementById('busca').select();
             document.getElementById('busca').placeholder = "Erro 1/4"
             check+=1;
             document.getElementById("runtime").classList.remove("invisivel");
           }
           else if (check==1){
             clear(document.getElementById('busca'));
-              
+            document.getElementById('busca').focus();
+            document.getElementById('busca').select();
             document.getElementById('busca').placeholder = "Erro 2/4"
             check+=1;
             document.getElementById("rating").classList.remove("invisivel");
           }
           else if (check==2){
             clear(document.getElementById('busca'));
-
+            document.getElementById('busca').focus();
+            document.getElementById('busca').select();
             document.getElementById('busca').placeholder = "Errou 3/4"
             check+=1;
             document.getElementById("sinopse").classList.remove("invisivel");
@@ -78,7 +82,8 @@
           }
           else if (check==3){
             clear(document.getElementById('busca'));
-
+            document.getElementById('busca').focus();
+            document.getElementById('busca').select();
             document.getElementById('busca').style.border = "2px solid #ff0000"
             document.getElementById('bt').style.border = "2px solid #ff0000"
             document.getElementById('bt').style.color = "#ff0000"
@@ -94,7 +99,8 @@
         else {
           clear(document.getElementById('busca'));
           check=5;
-
+          document.getElementById('busca').focus();
+          document.getElementById('busca').select();
           document.getElementById('busca').style.border = "2px solid #00ff00"
           document.getElementById('bt').style.border = "2px solid #00ff00"
           document.getElementById('bt').style.color = "#00ff00"
