@@ -43,7 +43,7 @@
 
 
 
-    function randomIntFromInterval(min, max) {
+    function randomIntFromInterval(min, max) { // min and max included
       return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
@@ -201,6 +201,8 @@
                 }
 
              urlGET="https://api.themoviedb.org/3/discover/movie?api_key=d1ffab0a3e49dce3b7fc58754ced0cec&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page="+x+"&with_runtime.gte=60"
+          
+            xmlhttp.open("GET", urlGET, true);
 
             xmlhttp.send();
 
