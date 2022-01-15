@@ -43,7 +43,7 @@
 
 
 
-    function randomIntFromInterval(min, max) { // min and max included
+    function randomIntFromInterval(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
@@ -181,7 +181,10 @@
 
                     $('.info').append(poster,titulo,ano,runtime,rating,sinopse)
                     console.log(document.getElementById("titulo").innerHTML);
-                 //$('.info').append(ano)
+                    console.log("Popularidade: "+filme.popularity);
+                    console.log("Vote count: "+filme.vote_count);
+                    console.log("Vote average: "+filme.vote_average);
+
 
 
                 }
@@ -195,64 +198,12 @@
                 console.log(resposta);
                 console.log(y);
 
-
-
-
-                  /*  var poster ='<img class="Poster" src="https://image.tmdb.org/t/p/w342/'+filme.results[y].poster_path+'"alt="Poster">'
-                    var titulo ='<h1 class="titulo">'+filme.results[y].title+'</h1>'
-                    var ano='<span class="ano"> Ano: '+filme.results[y].release_date+'</span>'
-                    var runtime='<p class="runtime"> Duração: '+filme.results[y].runtime+'</p>'
-                    var rating='<p class="rating">'+filme.results[y].tagline+'</p>'
-                    var sinopse='<p class="sinopse">'+filme.results[y].overview+'</p>'
-
-                    $('.info').append(poster,titulo,ano,runtime,rating,sinopse)
-
-*/
-
-
                 }
-
-                /*if (filme.Response=="False"){
-
-                    if (x=="") {
-                        var erro2 ='<h1 class="titulo">Entre com um titulo de filme</h1>'
-                    $('.info').append(erro2)
-                    }
-                    else{
-                     var erro ='<h1 class="titulo"> Nenhum resultado encontrado para "'+x+'"</h1>'
-                    $('.info').append(erro)
-
-                    }
-
-                }
-
-                else{
-
-
-                var poster ='<img class="Poster" src="'+filme.Poster+'"alt="Poster">'
-                var titulo ='<h1 class="titulo">'+filme.Title+'</h1>'
-                var ano='<span class="ano"> Ano: '+filme.Year+'</span>'
-                var runtime='<p class="runtime"> Duração: '+filme.Runtime+'</p>'
-                var rating='<p class="rating">IMDB: '+filme.imdbRating+'</p>'
-                var sinopse='<p class="sinopse">'+filme.Plot+'</p>'
-
-
-
-
-
-                $('.info').append(poster,titulo,ano,runtime,rating,sinopse)
-
-              }*/
-
-
-
 
              urlGET="https://api.themoviedb.org/3/discover/movie?api_key=d1ffab0a3e49dce3b7fc58754ced0cec&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page="+x+"&with_runtime.gte=60"
-            //urlGET="https://api.themoviedb.org/3/movie/"+x+"?api_key=d1ffab0a3e49dce3b7fc58754ced0cec&language=en-US&append_to_response=title"
-            xmlhttp.open("GET", urlGET, true);
 
             xmlhttp.send();
-        // "http://www.omdbapi.com/?t="+x+"&plot=full&apikey=f819ffba";
+
         }
 
 
