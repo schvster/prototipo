@@ -9,23 +9,26 @@
 </head>
 <body>
 
-    <div class="posicao">
-    <div class="busca">
-        <input id="busca"  type="text" class="entrada" name="search" placeholder="Qual é o filme?">
-        <button id="bt" onclick="enter()" class="botao active">
-            Enter
-        </button>
-        <button id="bt2" onclick="location.reload()" class="botao2 active"> Recomeçar </button>
 
-
-    </div>
-    </div>
 
     <div id="i" class="info">
 
 
 
 
+    </div>
+
+    <div class="posicao">
+    <div class="busca">
+        <button id="bt2" onclick="location.reload()" class="botao2 active"> Recomeçar </button>
+        <input id="busca"  type="text" class="entrada" name="search" placeholder="Qual é o filme?">
+        <button id="bt" onclick="enter()" class="botao active">
+            Enter
+        </button>
+
+
+
+    </div>
     </div>
 
 
@@ -51,40 +54,45 @@
     function enter() {
       event.preventDefault();
 
-      if (input.value.toUpperCase()!=document.getElementById("titulo").innerHTML.toUpperCase()){
-          if (check==0){
+      if (input.value.toUpperCase()!=document.getElementById("titulo").innerHTML.toUpperCase()){      
+          else if (check==0){
             clear(document.getElementById('busca'));
-            document.getElementById('busca').placeholder = "Erro 1/4"
+
+            document.getElementById('busca').placeholder = "Erro 2/4"
             check+=1;
+            document.getElementById("rating").classList.remove("invisivel");
           }
           else if (check==1){
             clear(document.getElementById('busca'));
-            document.getElementById('busca').placeholder = "Erro 2/4"
+
+            document.getElementById('busca').placeholder = "Errou 3/4"
             check+=1;
+            document.getElementById("sinopse").classList.remove("invisivel");
+
           }
           else if (check==2){
             clear(document.getElementById('busca'));
-            document.getElementById('busca').placeholder = "Errou 3/4"
-            check+=1;
 
-          }
-          else if (check==3){
-            clear(document.getElementById('busca'));
             document.getElementById('busca').style.border = "2px solid #ff0000"
             document.getElementById('bt').style.border = "2px solid #ff0000"
             document.getElementById('bt').style.color = "#ff0000"
-            document.getElementById('busca').placeholder = "Não foi dessa vez"
-            check+=1;
+            document.getElementById('busca').placeholder = 'Não foi dessa vez. Pressione "Enter" para jogar de novo'
+            check=5;
             document.getElementById("poster").classList.remove("invisivel");
             document.getElementById("titulo").classList.remove("invisivel");
+          }
+          else if (check==4){
+            location.reload()
           }
         }
         else {
           clear(document.getElementById('busca'));
+          check=4;
+
           document.getElementById('busca').style.border = "2px solid #00ff00"
           document.getElementById('bt').style.border = "2px solid #00ff00"
           document.getElementById('bt').style.color = "#00ff00"
-          document.getElementById('busca').placeholder = "Você conseguiu!"
+          document.getElementById('busca').placeholder = 'Você conseguiu! Pressione "Enter" para jogar de novo'
           document.getElementById("runtime").classList.remove("invisivel");
           document.getElementById("rating").classList.remove("invisivel");
           document.getElementById("sinopse").classList.remove("invisivel");
@@ -139,7 +147,7 @@
         function funciona() {
 
           var x = randomIntFromInterval(1, 160)
-          var y = randomIntFromInterval(1,19)
+          var y = randomIntFromInterval(0,19)
 
             var xmlhttp = new XMLHttpRequest();
 
@@ -166,7 +174,10 @@
 
                     $('.info').append(poster,titulo,ano,runtime,rating,sinopse)
                     console.log(document.getElementById("titulo").innerHTML);
-                 //$('.info').append(ano)
+                    console.log("Popularidade: "+filme.popularity);
+                    console.log("Vote count: "+filme.vote_count);
+                    console.log("Vote average: "+filme.vote_average);
+
 
 
                 }
@@ -180,64 +191,14 @@
                 console.log(resposta);
                 console.log(y);
 
-
-
-
-                  /*  var poster ='<img class="Poster" src="https://image.tmdb.org/t/p/w342/'+filme.results[y].poster_path+'"alt="Poster">'
-                    var titulo ='<h1 class="titulo">'+filme.results[y].title+'</h1>'
-                    var ano='<span class="ano"> Ano: '+filme.results[y].release_date+'</span>'
-                    var runtime='<p class="runtime"> Duração: '+filme.results[y].runtime+'</p>'
-                    var rating='<p class="rating">'+filme.results[y].tagline+'</p>'
-                    var sinopse='<p class="sinopse">'+filme.results[y].overview+'</p>'
-
-                    $('.info').append(poster,titulo,ano,runtime,rating,sinopse)
-
-*/
-
-
                 }
-
-                /*if (filme.Response=="False"){
-
-                    if (x=="") {
-                        var erro2 ='<h1 class="titulo">Entre com um titulo de filme</h1>'
-                    $('.info').append(erro2)
-                    }
-                    else{
-                     var erro ='<h1 class="titulo"> Nenhum resultado encontrado para "'+x+'"</h1>'
-                    $('.info').append(erro)
-
-                    }
-
-                }
-
-                else{
-
-
-                var poster ='<img class="Poster" src="'+filme.Poster+'"alt="Poster">'
-                var titulo ='<h1 class="titulo">'+filme.Title+'</h1>'
-                var ano='<span class="ano"> Ano: '+filme.Year+'</span>'
-                var runtime='<p class="runtime"> Duração: '+filme.Runtime+'</p>'
-                var rating='<p class="rating">IMDB: '+filme.imdbRating+'</p>'
-                var sinopse='<p class="sinopse">'+filme.Plot+'</p>'
-
-
-
-
-
-                $('.info').append(poster,titulo,ano,runtime,rating,sinopse)
-
-              }*/
-
-
-
 
              urlGET="https://api.themoviedb.org/3/discover/movie?api_key=d1ffab0a3e49dce3b7fc58754ced0cec&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page="+x+"&with_runtime.gte=60"
-            //urlGET="https://api.themoviedb.org/3/movie/"+x+"?api_key=d1ffab0a3e49dce3b7fc58754ced0cec&language=en-US&append_to_response=title"
+          
             xmlhttp.open("GET", urlGET, true);
 
             xmlhttp.send();
-        // "http://www.omdbapi.com/?t="+x+"&plot=full&apikey=f819ffba";
+
         }
 
 
@@ -249,3 +210,4 @@
 
 
 </html>
+
